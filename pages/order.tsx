@@ -11,7 +11,7 @@ const Order = () => {
         setShowTitle(false)
     }, 4000)
     return (<>
-        <Header />
+        {/* <Header /> */}
         <Box maxW='800px' m='100px auto 40px' textAlign='center'>
             <AnimatePresence>
                 {showTitle && (

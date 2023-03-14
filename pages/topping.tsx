@@ -2,11 +2,12 @@ import Header from "@/components/Header";
 import { Box, Button, Heading, VStack } from "@chakra-ui/react";
 import Link from "next/link";
 import styles from '@/styles/Home.module.css'
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { Pizza_data } from "@/context/state";
 import Layout from "@/components/Layout";
 import Tombol from "@/components/Tombol";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
+import { useRouter } from "next/router";
 
 const listVariants = {
     hovering:{
@@ -31,6 +32,7 @@ const buttoning = {
         }
     }
 }
+
 const Topping = () =>{
     const toppings:string[] = ['mushrooms', 'peppers', 'onions', 'olives', 'extra cheese', 'tomatoes'];
     const [pizza, setPizza] = useContext(Pizza_data)
@@ -47,11 +49,11 @@ const Topping = () =>{
         }
         setPizza({ ...pizza, toppings: newToppings });
     }
-
+    
     return (
         <>
            
-            <Layout>
+            <Layout route="/order" caption="Order">
                 <Heading className={styles.subtitle} as='h3'>Step 1: Choose Your Base</Heading>
                 <VStack textAlign='left'  align='stretch' spacing={0} pt='10px' className="cul">
                     {toppings.map(topping =>{
@@ -70,12 +72,10 @@ const Topping = () =>{
                         </Button>
                     })}
                 </VStack>
-                <Link href="/order">
-                    <motion.button className={styles.btn} variants={buttoning} whileHover="hovering">
-                    Order
-                    </motion.button>
+                {/* <Link href="/order"> */}
+                    
                     {/* <Tombol>Order</Tombol> */}
-                </Link>
+                {/* </Link> */}
             {/* </Box> */}
             </Layout>
             

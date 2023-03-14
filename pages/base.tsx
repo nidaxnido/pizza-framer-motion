@@ -1,13 +1,14 @@
 import Header from "@/components/Header";
-import { Box, Button, Heading, ListItem, UnorderedList, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, IconButton, ListItem, UnorderedList, VStack, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import { Pizza_data } from "@/context/state";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { addAbortSignal } from "stream";
 import styles from '@/styles/Home.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
 import Layout from "@/components/Layout";
 import Tombol from "@/components/Tombol";
+import {ArrowBackIcon} from '@chakra-ui/icons';
 
 const listVariants = {
     hovering:{
@@ -45,15 +46,27 @@ const Base = ()=>{
     }
     return (
         <>
-        <Header />
-        <AnimatePresence>
-        <Box as={motion.div} maxW='300px' m='100px auto 40px' 
+        {/* <Header /> */}
+        {/* <AnimatePresence> */}
+        {/* <Box as={motion.div} maxW='300px' m='100px auto 40px' 
         variants={containerVariants}
+        key="123s5"
         initial="hidden"
         animate="visible"
         exit="exit"
-        >
-            <Heading className={styles.subtitle} as='h3'>Step 1: Choose Your Base</Heading>
+        > */}
+        <Layout route="/topping" caption="Next" animasi={true} syarat={pizza.base} >
+            <Flex>
+                
+                <Heading className={styles.subtitle} as='h3'>
+                    <Link href='/'>
+                        <IconButton bg="none" border="none" cursor="pointer"  aria-label="go back" 
+                                    icon={<ArrowBackIcon boxSize={30} />}
+                                   /> 
+                    </Link>
+
+                    Step 1: Choose Your Base</Heading>
+            </Flex>
             <VStack textAlign='left'  align='stretch' spacing={0} pt='10px' className="cul">
                 {bases.map(base=>{
                     // let spanClass = pizza.base == base ? 'active' : ''
@@ -69,16 +82,16 @@ const Base = ()=>{
                     )
                 })}
             </VStack>
-            {pizza.base && (
+            {/* {pizza.base && (
                 <motion.div animate={{x:0}} initial={{ x:'-100vh' }}>
                     <Link href='/topping'>
-                        {/* <button className={styles.btn}>Next</button> */}
                         <Tombol>Next</Tombol>
                     </Link>
                 </motion.div>
             )}
-            </Box>
-            </AnimatePresence>
+            </Box> */}
+            </Layout>
+            {/* </AnimatePresence> */}
             
         
         </>
